@@ -1,0 +1,90 @@
+{% extends "TECACoin_base.html" %}
+
+{% block title %}Transfer TECACoin{% endblock %}
+
+{% block content %}
+<div class="head">
+
+  <div class="text-center mb-4">
+    <h1 class="fw-bold text-primary"><i class="bi bi-cash-coin me-2"></i> Transfer TECACoin</h1>
+    <p class="text-light">Transfer TECACoin and it would be received in seconds.</p>
+  </div>
+
+  <div class="card shadow-lg border-0 rounded-4 mb-5 p-4 mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+      <form method="POST" action="{{ url_for('transfer_TECA')}}" id="buy-form" class="row g-3">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+          
+            <div class="col-12">
+              <div class="row-md-4">
+                <div class="card border-0 rounded-4 h-100">
+                  <div class="card-body">
+                    <i class="bi bi-wallet2 fs-1" style="color:rgb(91, 6, 202);"></i>
+                    <h6 class=" text-dark fw-bold mt-2">TECA Balance:</h6>
+                    <p id="chain-length" class="fw-bold fs-3 mb-0" style="color:rgb(63, 99, 66)">{{ "%.4f"|format(wallet.balance )}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <div class="col-12">
+    <label for="recipient_id" class="form-label fw-semibold">Wallet ID</label>
+    <input type="text" class="form-control rounded-3" name="recipient_id" id="recipient_id"
+      placeholder="Enter wallet ID of the receiver" required>
+    <span id="recipient-name" class="fw-bold d-block mt-2"></span>
+        </div>
+
+        <div class="col-12">
+          <label for="amount" class="form-label fw-semibold">Amount (TECA)</label>
+          <input type="number" class="form-control rounded-3" name="amount" id="amount"
+                 step="0.000000001" min="0.000000001" placeholder="Enter amount to transfer" required>
+        </div>
+
+        <div class="col-12 d-grid">
+          <button type="submit" class="btn btn-primary btn-lg rounded-3 shadow">
+            <i class="bi bi-bag-check me-1"></i> Send
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById("recipient_id").addEventListener("blur", async function () {
+  let walletId = this.value.trim();
+  let nameField = document.getElementById("recipient-name");
+  if (walletId === "") {
+    nameField.innerText = "";
+    return;
+  }
+  try {
+    let response = await fetch(`/get_user_name/${walletId}`);
+    let data = await response.json();
+    if (data.exists) {
+      nameField.innerText = `✅ Recipient: ${data.name}`;
+      nameField.classList.add("text-success");
+      nameField.classList.remove("text-danger");
+    } else {
+      nameField.innerText = "❌ No user found with this wallet address!";
+      nameField.classList.add("text-danger");
+      nameField.classList.remove("text-success");
+    }
+  } catch (error) {
+    nameField.innerText = "⚠️ Error fetching user info.";
+    nameField.classList.add("text-danger");
+  }
+});
+</script>
+
+
+{% endblock %}

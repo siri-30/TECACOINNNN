@@ -1,0 +1,121 @@
+{% extends "TECACoin_base.html" %}
+
+{% block title %}Buy TECACoin{% endblock %}
+
+{% block content %}
+<div class="head">
+
+  <div class="text-center mb-4">
+    <h1 class="fw-bold text-primary"><i class="bi bi-cash-coin me-2"></i> Sell TECACoin</h1>
+    <p class="text-light">Sell TECACoin instantly across the globe.</p>
+  </div>
+
+
+  <div class="card shadow-lg border-0 rounded-4 p-4 mb-5 mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+      <form method="POST" id="buy-form" class="row g-3">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="col-12">
+              <div class="row-md-4">
+                <div class="card border-0 rounded-4 h-100">
+                  <div class="card-body">
+                    <i class="bi bi-wallet2 fs-1" style="color:rgb(91, 6, 202);"></i>
+                    <h6 class=" text-dark fw-bold mt-2">TECA Balance:</h6>
+                    <p id="chain-length" class="fw-bold fs-3 mb-0" style="color:rgb(63, 99, 66)">{{ "%.4f"|format(wallet.balance )}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <div class="col-12">
+          <label for="amount" class="form-label fw-semibold">Amount (TECA)</label>
+          <input type="number" class="form-control rounded-3" name="amount" id="amount"
+                 step="0.0000000001" min="0.0000000001" placeholder="Enter amount to sell" required>
+        </div>
+
+
+        <div class="col-12">
+          <label for="currency" class="form-label fw-semibold">Choose Currency</label>
+          <select class="form-select rounded-3" id="currency" name="currency" required>
+            <option value="USD" selected>🇺🇸 USD - US Dollar</option>
+            <option value="EUR">🇪🇺 EUR - Euro</option>
+            <option value="GBP">🇬🇧 GBP - British Pound</option>
+            <option value="NGN">🇳🇬 NGN - Nigerian Naira</option>
+            <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+          </select>
+        </div>
+
+  
+        <div class="col-12">
+          <p class="fw-bold fs-5 mb-0">
+            💰 Total Price: <span class="text-success" id="total-price">$0.00</span>
+          </p>
+          <small class="text-muted">Current rate: <span id="rate">1 TECA = $20</span></small>
+        </div>
+
+
+        <div class="col-12 d-grid">
+          <button type="submit" class="btn btn-primary btn-lg rounded-3 shadow">
+            <i class="bi bi-bag-check me-1"></i> Sell Now
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const amountInput = document.getElementById("amount");
+  const currencySelect = document.getElementById("currency");
+  const priceField = document.getElementById("total-price");
+  const rateField = document.getElementById("rate");
+
+
+  const rates = {
+    "USD": 20,
+    "EUR": 18.4,
+    "GBP": 16,
+    "NGN": 30000.00,
+    "JPY": 3000.00
+  };
+
+  function updatePrice() {
+    let amount = parseFloat(amountInput.value);
+    let currency = currencySelect.value;
+    let rate = rates[currency];
+
+    if (!isNaN(amount) && amount > 0) {
+      priceField.innerText = `${getCurrencySymbol(currency)}${(amount * rate).toFixed(2)}`;
+    } else {
+      priceField.innerText = `${getCurrencySymbol(currency)}0.00`;
+    }
+
+    rateField.innerText = `1 TECA = ${getCurrencySymbol(currency)}${rate.toFixed(2)}`;
+  }
+
+  function getCurrencySymbol(currency) {
+    switch (currency) {
+      case "USD": return "$";
+      case "EUR": return "€";
+      case "GBP": return "£";
+      case "NGN": return "₦";
+      case "JPY": return "¥";
+      default: return "$";
+    }
+  }
+
+  amountInput.addEventListener("input", updatePrice);
+  currencySelect.addEventListener("change", updatePrice);
+</script>
+{% endblock %}

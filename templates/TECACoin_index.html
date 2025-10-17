@@ -1,0 +1,239 @@
+{% extends "TECACoin_base.html" %}
+
+{% block title %}Home - TECACoin{% endblock %}
+
+{% block content %}
+
+    <section class="hero fade-in">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text fade-in-left">
+                    <h1>What is TECACoin?</h1>
+                    <p>An open source peer to peer digital currency. TECACoin is the crypto movement that makes people smile! It is also an opensource peer-to-peer cryptocurrency that utilises blockchain technology, a highly secure decentralised system of storing information as a public ledger that is maintained by a network of computers called nodes.</p>
+                    {% if current_user.is_authenticated%}
+                    <a href="{{ url_for('dashboard')}}" class="btnn">Start Trading Now</a>
+                    {% endif %}
+                </div>
+                <div class="hero-image fade-in-right">
+                    <img class="blend-strong" src="{{url_for('static', filename='images/TECACoin Digital Currency Design.png')}}" alt="Cryptocurrency Illustration">
+                    <a href="{{ url_for('buy_teca')}}" class="btnn m-5 text-light">Buy TECACoin</a>
+                    <a href="{{ url_for('sell_teca')}}" class="btnn mt-5 text-light">Sell TECACoin</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features fade-in">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Why Invest in TECACoin</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in-left">
+                    <div class="feature-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3>Accessibility</h3>
+                    <p>TECACoin allow people from anywhere in the world to participate in the financial system. You don't need a bank account; all you need is an internet connection. </p>
+                </div>
+                <div class="feature-card fade-in-right">
+                    <div class="feature-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Security</h3>
+                    <p>We are built on blockchain, a technology that is highly secure. Blockchain records all transactions in a transparent and tamper-proof way, which reduces fraud. This means when you invest in TECACoin, you're also investing in an innovative technology that could be used in so many areas of life</p>
+                </div>
+                <div class="feature-card fade-in-left">
+                    <div class="feature-icon">
+                        <i class="fa solid fa-coins"></i>
+                    </div>
+                    <h3>Earning Passive Income</h3>
+                    <p>TECACoin allows you to earn passive income through methods like staking, where you lock up your TECA to support the network and earn rewards.</p>
+                </div>
+                <div class="feature-card fade-in-right">
+                    <div class="feature-icon">
+                        <i class="fas fa-balance-scale-right"></i>
+                    </div>
+                    <h3>Lower Transaction Fees</h3>
+                    <p>TECACoin allows you to send money across borders quickly and at a much lower cost.</p>
+                </div>
+                <div class="feature-card fade-in-left">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Inflation Protection</h3>
+                    <p>TECACoin has a hard cap on the total number of coins that will ever be minted. So, as the growth of the money supply outpaces the growth in the TECACoin supply, the price of TECACoin ought to increase.</p>
+                </div>
+                <div class="feature-card fade-in-right">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer support to assist you with any questions or issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="crypto-prices fade-in">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Real-Time Market Data</h2>
+                <p>Track the latest cryptocurrency prices and market movements</p>
+            </div>
+            <div class="price-table-container fade-in">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Coin</th>
+                            <th>Price</th>
+                            <th>24h Change</th>
+                            <th>Market Cap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bitcoin (BTC)</td>
+                            <td id="btc-price">Loading...</td>
+                            <td><span id="btc-change" class="price-change price-up">Loading...</span></td>
+                            <td id="btc-cap">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Ethereum (ETH)</td>
+                            <td id="eth-price">Loading...</td>
+                            <td><span id="eth-change" class="price-change price-up">Loading...</span></td>
+                            <td id="eth-cap">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Binance Coin (BNB)</td>
+                            <td id="bnb-price">Loading...</td>
+                            <td><span id="bnb-change" class="price-change price-down">Loading...</span></td>
+                            <td id="bnb-cap">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Cardano (ADA)</td>
+                            <td id="ada-price">Loading...</td>
+                            <td><span id="ada-change" class="price-change price-down">Loading...</span></td>
+                            <td id="ada-cap">Loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Solana (SOL)</td>
+                            <td id="sol-price">Loading...</td>
+                            <td><span id="sol-change" class="price-change price-up">Loading...</span></td>
+                            <td id="sol-cap">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta fade-in">
+        <div class="container">
+            <h2>Join Millions of TECACoin Traders</h2>
+            <p>Start your cryptocurrency journey today by Mining or purchasing TECACoin</p>
+            <a href="{{url_for('get_started')}}" class="btnn">Create Free Account</a>
+        </div>
+    </section>
+
+    <footer class="fade-in">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TECACoin</h3>
+                    <p>The most trusted cryptocurrency platform for buying, selling, and trading digital assets.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="{{ url_for('dashboard')}}">Trading</a></li>
+                        <li><a href="{{ url_for('dashboard')}}">Wallet</a></li>
+                        <li><a href="{{ url_for('buy_teca')}}">Exchange</a></li>
+                        <li><a href="#">Crypto Cards</a></li>
+                        <li><a href="{{ url_for('buy_teca')}}">Buy TECACoin</a></li>
+                        <li><a href="{{ url_for('sell_teca')}}">Sell TECACoin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="{{ url_for('about')}}">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="{{url_for('contact')}}">Help Center</a></li>
+                        <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+                        <li><a href="#">System Status</a></li>
+                        <li><a href="#">Area of Availability</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TECACoin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+{% endblock %} 
+
+{% block scripts %}
+
+<script>
+async function updatePrices() {
+  try {
+    const response = await fetch('/crypto-data');
+    const data = await response.json();
+
+    const coins = {
+      btc: data.bitcoin,
+      eth: data.ethereum,
+      bnb: data.binancecoin,
+      ada: data.cardano,
+      sol: data.solana
+    };
+
+    for (const [symbol, info] of Object.entries(coins)) {
+      const priceEl = document.getElementById(`${symbol}-price`);
+      const changeEl = document.getElementById(`${symbol}-change`);
+      const capEl = document.getElementById(`${symbol}-cap`);
+
+      if (!priceEl || !changeEl || !capEl) continue;
+
+      // Update price
+      priceEl.textContent = `$${info.usd.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+      // Update 24h change with color
+      const change = info.usd_24h_change.toFixed(2);
+      changeEl.textContent = (change > 0 ? '+' : '') + change + '%';
+      changeEl.className = `price-change ${change > 0 ? 'price-up' : 'price-down'}`;
+
+      // Update market cap (convert to billions/trillions)
+      const cap = info.usd_market_cap;
+      let formattedCap;
+      if (cap >= 1e12) formattedCap = `$${(cap / 1e12).toFixed(2)}T`;
+      else formattedCap = `$${(cap / 1e9).toFixed(2)}B`;
+      capEl.textContent = formattedCap;
+    }
+  } catch (err) {
+    console.error('Failed to fetch crypto data', err);
+  }
+}
+
+// Update every 30 seconds
+updatePrices();
+setInterval(updatePrices, 30000);
+</script>
+
+{% endblock %}

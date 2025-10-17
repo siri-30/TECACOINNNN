@@ -1,0 +1,145 @@
+{% extends "TECACoin_base.html" %}
+
+{% block title %} Contact - TECACoin {% endblock %}
+
+{% block content %}
+
+<div class="head2">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">📬 Contact Us</h2>
+                <p class="text-light">We'd love to hear from you! Fill out the form below and we'll get back to you soon.</p>
+            </div>
+
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+
+                    <form method="POST" action="{{ url_for('contact') }}">
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold">
+                                <i class="bi bi-person-fill me-2"></i>Your First Name
+                            </label>
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="John" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold">
+                                <i class="bi bi-person-fill me-2"></i>Your Last Name
+                            </label>
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Doe" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">
+                                <i class="bi bi-envelope-fill me-2"></i>Email Address
+                            </label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label fw-semibold">
+                                <i class="bi bi-pencil-fill me-2"></i>Message
+                            </label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning fw-bold w-100 py-2 rounded-3">
+                            <i class="bi bi-send-fill me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row text-center mt-5">
+                <div class="col-md-4 mb-3 h-100 hover-card">
+                    <div class="p-3 shadow-sm rounded bg-light">
+                        <i class="bi bi-geo-alt-fill fs-3 text-dark"></i>
+                        <h6 class="mt-2 text-dark fw-bold">Our Office</h6>
+                        <p class="text-muted small">123 Crypto Street, Enugu, Nigeria</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 h-100 hover-card">
+                    <div class="p-3 shadow-sm rounded bg-light">
+                        <i class="bi bi-telephone-fill fs-3 text-dark"></i>
+                        <h6 class="mt-2 text-dark fw-bold">Call Us</h6>
+                        <p class="text-muted small">+234 800 123 4567</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 h-100 hover-card">
+                    <div class="p-3 shadow-sm rounded bg-light">
+                        <i class="bi bi-envelope-fill fs-3 text-dark"></i>
+                        <h6 class="mt-2 text-dark fw-bold">Email</h6>
+                        <p class="text-muted small">support@tecacoin.com</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TECACoin</h3>
+                    <p>The most trusted cryptocurrency platform for buying, selling, and trading digital assets.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="{{ url_for('dashboard')}}">Trading</a></li>
+                        <li><a href="#">Wallet</a></li>
+                        <li><a href="#">Exchange</a></li>
+                        <li><a href="#">Crypto Cards</a></li>
+                        <li><a href="{{ url_for('buy_teca')}}">Buy TECACoin</a></li>
+                        <li><a href="{{ url_for('sell_teca')}}">Sell TECACoin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="{{ url_for('about')}}">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="{{url_for('contact')}}">Help Center</a></li>
+                        <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+                        <li><a href="#">System Status</a></li>
+                        <li><a href="#">Area of Availability</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TECACoin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}

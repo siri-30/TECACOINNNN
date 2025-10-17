@@ -1,0 +1,103 @@
+{% extends "TECACoin_base.html" %}
+
+{% block title %}TECACoin Dashboard{% endblock %}
+
+{% block content %}
+<div class="head2">
+
+  <div class="card shadow-lg border-0 rounded-4 mb-4">
+    <div class="card-header bg-gradient bg-secondary text-white fw-semibold rounded-top-4">
+      <i class="bi bi-clock-history me-2"></i> Blocks to be Mined
+    </div>
+
+    <div class="card-body">
+          <div class="table-responsive">
+            <div id="mining-note" class="alert alert-info text-center fw-bold" style="display:none;">
+              <i class="bi bi-hourglass-split me-2"></i> Please wait, mining in process...
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-borderless align-middle" id="transactionsTable">
+                  <thead class="table-dark">
+                      <tr>
+                          <th>Transaction ID</th>
+                          <th>Date/Time</th>
+                          <th>Sender</th>
+                          <th>Recipient</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                                {% if transactions|length == 0 %}
+                                <tr>
+                                  <td colspan="7" class="text-center text-muted" style="font-style: italic;">No blocks to be mined</td>
+                                </tr>
+                                {% else %}
+                                  {% for tx in transactions %}
+                                  <tr>
+                                    <td>{{ tx.id }}</td>
+                                    <td>
+                                      {% if tx.tx_type == 'confirmed' %}
+                                        {{ tx.timestamp.strftime('%d %b %Y, %I:%M %p') }}
+                                      {% else %}
+                                        {{ tx.timestamp.strftime('%d %b %Y, %I:%M %p') if tx.timestamp else '' }}
+                                      {% endif %}
+                                    </td>
+                                    <td>
+                                      {% if tx.tx_type == 'confirmed' %}
+                                        {{ tx.sender.username if tx.sender else 'SYSTEM' }}
+                                      {% else %}
+                                        {{ tx.sender if tx.sender else 'SYSTEM' }}
+                                      {% endif %}
+                                    </td>
+                                    <td>
+                                      {% if tx.tx_type == 'confirmed' %}
+                                        {{ tx.recipient.username if tx.recipient else 'SYSTEM' }}
+                                      {% else %}
+                                        {{ tx.recipient if tx.recipient else 'SYSTEM' }}
+                                      {% endif %}
+                                    </td>
+                                    <td>{{ tx.amount }}</td>
+                                    <td>
+                                      {% if tx.tx_type == 'confirmed' %}
+                                        Confirmed
+                                      {% else %}
+                                        Pending
+                                      {% endif %}
+                                    </td>
+                                  </tr>
+                                  {% endfor %}
+                                {% endif %}
+                        </td>
+                      </tr>
+                  </tbody>
+
+
+
+              </table>
+
+          </div>
+    </div>
+
+      <div class="text-center">
+          <a id="mine-block-btn" href="{{ url_for('mine_single_block') }}" class="btn btn-warning btn-lg px-5 rounded-pill shadow-sm">
+            <i class="bi bi-cpu me-2"></i>Mine
+          </a>
+      </div>
+<script>
+  const mineBtn = document.getElementById('mine-block-btn');
+  const miningNote = document.getElementById('mining-note');
+  if (mineBtn && miningNote) {
+    mineBtn.addEventListener('click', function() {
+      miningNote.style.display = '';
+      mineBtn.classList.add('disabled');
+      mineBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Mining...';
+    });
+  }
+</script>
+
+  </div>
+
+</div>
+
+{% endblock %}

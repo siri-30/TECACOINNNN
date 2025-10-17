@@ -1,0 +1,879 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0a0c17;
+    color: white;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-top: 0px;
+}
+
+.flashes {
+  margin-top: 0;
+  padding-top: 100px;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #0a0c17;
+}
+
+.head{
+    padding-top: 130px;
+}
+
+.head3{
+    padding-top: 130px;
+    height: 1100px;
+}
+
+.head2{
+    padding-top: 155px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(13, 17, 33, 0.8);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-links2 {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links2 li{
+    margin-left: 30px;
+}
+
+.nav-links a:hover {
+    color: #5278ba;
+}
+
+.btnn {
+    display: inline-block;
+    padding: 12px 28px;
+    /* background: linear-gradient(to right, var(--primary), var(--secondary)); */
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btnn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(42, 113, 255, 0.3);
+}
+
+.btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btnnnn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgb(255, 255, 255);
+}
+/* Hero Section */
+.hero {
+    padding: 160px 0 100px;
+    background: radial-gradient(circle at top right, rgba(57, 72, 255, 0.2), transparent 400px),
+                radial-gradient(circle at bottom left, rgba(121, 51, 255, 0.2), transparent 400px);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-text {
+    flex: 1;
+    padding-right: 50px;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    margin-bottom: 30px;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    animation: float 5s ease-in-out infinite;
+}
+
+/* Blend helper for coin/logo images so they visually mix with the hero background.
+   Use the .blend-coin class on the <img> element. Tweak mode/opacity/filter to taste. */
+.blend-coin {
+    /* ensure the image is isolated so blend mode only affects this element */
+    isolation: isolate;
+    /* how the image blends with the background - try 'screen', 'overlay', 'multiply', 'soft-light' */
+    mix-blend-mode: screen;
+    /* slightly reduce intensity so background shows through */
+    opacity: 0.92;
+    /* subtle color adjustments - optional */
+    filter: saturate(1.05) drop-shadow(0 10px 20px rgba(0,0,0,0.45));
+    /* make sure it remains responsive */
+    max-width: 80%;
+    transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.blend-coin:hover {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.02);
+    filter: saturate(1.1) drop-shadow(0 14px 28px rgba(0,0,0,0.5));
+}
+
+/* Stronger blending variations for quick swapping/testing */
+.blend-strong {
+    isolation: isolate;
+    /* stronger blend, tends to brighten and merge highlights */
+    mix-blend-mode: overlay;
+    opacity: 0.88;
+    filter: saturate(0.95) contrast(1.05) drop-shadow(0 14px 30px rgba(0,0,0,0.55));
+    max-width: 78%;
+}
+
+.blend-dark {
+    isolation: isolate;
+    /* darken and integrate the image with darker backgrounds */
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    filter: saturate(0.9) brightness(0.95) drop-shadow(0 12px 24px rgba(0,0,0,0.6));
+    max-width: 78%;
+}
+
+.blend-soft {
+    isolation: isolate;
+    /* subtle soft light effect */
+    mix-blend-mode: soft-light;
+    opacity: 0.9;
+    filter: saturate(1.02) blur(0.2px) drop-shadow(0 8px 18px rgba(0,0,0,0.45));
+    max-width: 80%;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Features Section */
+.features {
+    padding: 100px 0;
+    background-color: rgba(10, 14, 30, 0.7);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.section-title p {
+    color: #b0b0b0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+    color:aliceblue
+}
+
+
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #b0b0b0;
+}
+
+/* Crypto Prices */
+.crypto-prices {
+    padding: 100px 0;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.price-table th, .price-table td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-table th {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+}
+
+.price-change {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.price-up {
+    background-color: rgba(0, 201, 167, 0.2);
+    color: var(--success);
+}
+
+.price-down {
+    background-color: rgba(255, 64, 96, 0.2);
+    color: var(--danger);
+}
+
+/* CTA Section */
+.cta {
+    padding: 100px 0;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(57, 72, 255, 0.1), transparent 700px);
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    color: #b0b0b0;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* Footer */
+footer {
+  background-color: #070911;
+  padding: 60px 0 30px;
+  color: #b0b0b0;
+  transition: all 0.3s ease;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-column h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--light, #fff);
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  color: #b0b0b0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: rgb(3, 113, 113);
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.social-icons a:hover {
+  background: var(--primary, rgb(3, 113, 113));
+  transform: translateY(-3px);
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+/* =============================
+   RESPONSIVE DESIGN SECTION
+   ============================= */
+
+/* --- Tablets (≤768px) --- */
+@media (max-width: 768px) {
+  footer {
+    padding: 50px 20px 25px;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* --- Small Phones (≤425px) --- */
+@media (max-width: 425px) {
+  footer {
+    padding: 40px 15px 20px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .footer-column h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .footer-column p {
+    font-size: 0.9rem;
+  }
+
+  .footer-column a {
+    font-size: 0.9rem;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .social-icons a {
+    width: 35px;
+    height: 35px;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- Extra Small Phones (≤375px) --- */
+@media (max-width: 375px) {
+  .footer-column h3 {
+    font-size: 0.95rem;
+  }
+
+  .footer-column a,
+  .footer-column p {
+    font-size: 0.85rem;
+  }
+
+  .social-icons a {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+  }
+}
+
+/* --- Very Small Phones (≤320px) --- */
+@media (max-width: 320px) {
+  footer {
+    padding: 30px 10px 15px;
+  }
+
+  .footer-column h3 {
+    font-size: 0.9rem;
+  }
+
+  .footer-column a,
+  .footer-column p {
+    font-size: 0.8rem;
+  }
+
+  .social-icons a {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+
+  .copyright {
+    font-size: 0.7rem;
+  }
+}
+
+
+        /* LOGIN CSS */
+.mt-5{
+    color: #ffff;
+}
+
+        /* BECOME A MINER CSS */
+.hover-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+}        
+
+
+
+.card {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+     /* ABOUT CSS */
+.about-hero {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  border-radius: 0 0 40px 40px;
+}
+
+/* Hover zoom effect */
+.hover-zoom {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.hover-zoom:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Call-to-Action Section */
+.about-cta {
+  background: rgb(240, 240, 231);
+  border-top: 1px solid #ddd;
+}
+
+/* Keyframes for Left/Right Fade */
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Classes for Animations */
+.fade-in-left {
+  animation: fadeInLeft 0.8s ease-out both;
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.8s ease-out both;
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out both;
+}
+        /* Responsive Design
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        } */
+
+/* RESPONSIVE DESIGN */
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .btnn {
+    padding: 10px 22px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .head, .head2, .head3 {
+    padding-top: 90px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+  }
+
+  .navbar-brand span {
+    font-size: 1rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+
+  .feature-card {
+    padding: 20px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    width: 70px;
+  }
+
+  .btnn, .btn {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .crypto-prices .section-title h2 {
+    font-size: 1.6rem;
+  }
+
+  .price-table th, .price-table td {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .price-table-container {
+    border-radius: 10px;
+  }
+
+  body {
+    font-size: 0.95rem;
+  }
+}
+
+/* ========== GLOBAL NAVBAR STYLES ========== */
+
+/* ========== SMALL DEVICE FIXES ========== */
+
+/* ✅ 425px (small Androids / small iPhones) */
+@media (max-width: 425px) {
+  .navbar-brand span {
+    font-size: 0.9rem;
+  }
+
+  .navbar-brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navbar-toggler {
+    transform: scale(0.9);
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+/* ✅ 375px (older iPhones / compact Android) */
+@media (max-width: 375px) {
+  .navbar-brand span {
+    font-size: 0.85rem;
+  }
+
+  .navbar-brand img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .navbar-toggler {
+    transform: scale(0.85);
+  }
+}
+
+/* ✅ 320px (tiny screens like iPhone SE / older Androids) */
+@media (max-width: 320px) {
+  .navbar-brand span {
+    font-size: 0.75rem;
+  }
+
+  .navbar-brand img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .navbar-toggler {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text {
+    padding-right: 0;
+  }
+
+  .hero-image img {
+    max-width: 80%;
+  }
+}
+
+/* QUICK ACTIONS BUTTON */
+.quick-actions .btn {
+  /* width: 75%; */
+  max-width: 350px;
+  display: block;
+  /* margin: 10px auto; */
+  border-radius: 30px;
+  /* align-content: space-between; */
+}
+
+/* For smaller screens (425px, 375px, 320px) */
+@media (max-width: 425px) {
+  .quick-actions .btn {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .quick-actions .btn {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .quick-actions .btn {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

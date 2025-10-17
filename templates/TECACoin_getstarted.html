@@ -1,0 +1,97 @@
+{% extends "TECACoin_base.html" %}
+
+{% block title %}Get Started -TECACoin{% endblock %}
+
+{% block content %}
+
+<div class="head d-flex justify-content-center align items-center">
+    <div class="card shadow-lg border-0 rounded-4" style="max-width: 420px; width:100%">
+        <div class="card-header bg-dark text-center py-3 text-light">
+            <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i>Please Sign-up</h4>
+        </div>
+
+        <div class="card-body p-4">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{url_for('get_started')}}">
+                <div class="form-group form-floating mb-2">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                    <label for="floating-input">User name</label>
+                </div>
+
+               <div class="form-group form-floating mb-2">
+                    <input type="email" name="email" required class="form-control" id="email" placeholder="email address">
+                    <label for="floating-input">Email Address</label>
+               </div>
+
+               <div class="form-group form-floating mb-2">
+                <input type="password" name="password" required class="form-control" id="password" placeholder="password">
+                    <i class="fas fa-eye" id="togglePassword" 
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                    </i>
+                <label for="floating-input">Password</label>
+                </div>
+
+                <div class="form-group form-floating mb-2">
+                    <input type="password" name="confirm_password" required class="form-control" id="confirm_password" placeholder="confirm password">
+                    <i class="fas fa-eye" id="togglePassword2" 
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                    </i>
+                    <label for="floating-input">Confirm Password</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary fw-bold w-100 py-2 rounded-3">
+                    <i class="fas fa-user-plus me-2"></i>Sign-up
+                </button>
+
+            </form><br>
+            <div class=" text-center mb-3">
+                <small class="text-muted"> Already have an account? 
+                    <a href="{{url_for('login')}}" class="fw-bold text-decoration-none">Login here</a>
+                </small>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("click", function () {
+
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+
+    const togglePassword2 = document.querySelector("#togglePassword2");
+    const confirm_password = document.querySelector("#confirm_password");
+
+    togglePassword2.addEventListener("click", function () {
+
+        const type =confirm_password.getAttribute("type") === "password" ? "text" : "password";
+        confirm_password.setAttribute("type", type);
+
+
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"></script>
+
+
+    {% endblock %}

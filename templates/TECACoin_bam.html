@@ -1,0 +1,140 @@
+{% extends "TECACoin_base.html" %}
+
+{% block title %} Become A Miner - TECACoin {% endblock %}
+
+{% block content %}
+
+<div class="head pb-5">
+
+    <div class="text-center mb-5 pt-5">
+        <h1 class="fw-bold display-5">💻 Become a TECACoin Miner</h1>
+        <p class="lead text-light">Join our decentralized network, validate transactions, and earn TECACoin while helping to secure the blockchain.</p>
+    </div>
+
+    <div class="row g-4 mb-5 p-5">
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 rounded-4 h-100 hover-card">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-network-wired fa-3x text-primary mb-3"></i>
+                    <h5 class="fw-bold">Secure the Network</h5>
+                    <p class="text-muted">Validate transactions and keep the TECACoin blockchain reliable and decentralized.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 rounded-4 h-100 hover-card">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-coins fa-3x text-warning mb-3"></i>
+                    <h5 class="fw-bold">Earn Rewards</h5>
+                    <p class="text-muted">Receive TECACoin for every block you mine and support the network’s growth.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 rounded-4 h-100 hover-card">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-laptop-code fa-3x text-success mb-3"></i>
+                    <h5 class="fw-bold">Easy Setup</h5>
+                    <p class="text-muted">Follow our beginner-friendly guide to start mining TECACoin in minutes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 650px;">
+        <div class="card-header bg-dark text-white text-center py-3">
+            <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i>Apply to Become a Miner</h4>
+        </div>
+        <div class="card-body p-4">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('bam')}}">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="UserName" required>
+                    <label for="username">User Name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    <label for="email">Email Address</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="wall_id" name="wall_id" placeholder="Wallet ID" required>
+                    <label for="wall_id">Wallet ID</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="experience" name="experience" placeholder="Mining Experience" style="height: 150px;"></textarea>
+                    <label for="experience">Mining Experience (Optional)</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary fw-bold w-100 py-2 rounded-3">
+                    <i class="fas fa-paper-plane me-2"></i>Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TECACoin</h3>
+                    <p>The most trusted cryptocurrency platform for buying, selling, and trading digital assets.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="{{ url_for('dashboard')}}">Trading</a></li>
+                        <li><a href="#">Wallet</a></li>
+                        <li><a href="#">Exchange</a></li>
+                        <li><a href="#">Crypto Cards</a></li>
+                        <li><a href="#">Buy TECACoin</a></li>
+                        <li><a href="#">Sell TECACoin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="{{ url_for('about')}}">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="{{url_for('contact')}}">Help Center</a></li>
+                        <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+                        <li><a href="#">System Status</a></li>
+                        <li><a href="#">Area of Availability</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TECACoin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
