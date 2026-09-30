@@ -8,6 +8,7 @@ cffi==2.0.0
 charset-normalizer==3.4.3
 click==8.2.1
 colorama==0.4.6
+gunicorn
 comm==0.2.3
 ConfigArgParse==1.7.1
 debugpy==1.8.16
